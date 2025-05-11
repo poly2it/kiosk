@@ -7,6 +7,10 @@ edition = "2021"
 
 [dependencies]
 dioxus = { version = "0.6.0", features = [] }
+gloo-timers = "0.3.0"
+wasm-bindgen = "0.2.100"
+wasm-bindgen-futures = "0.4.50"
+web-sys = { version = "0.3.77", features = ["Window", "Document", "MouseEvent"] }
 
 [features]
 default = ["web"]

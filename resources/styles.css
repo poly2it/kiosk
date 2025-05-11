@@ -1,0 +1,148 @@
+.dx-toast-inner {
+	display: none !important;
+}
+
+.hype-icon {
+	filter: grayscale(1) brightness(1.8) contrast(0.4) opacity(0.7);
+	transition: filter 0.2s;
+	position: relative;
+	z-index: 1;
+}
+
+.hype-icon:hover,
+.hype-icon.hyped,
+.hype-icon.spark {
+	filter: none;
+}
+.hype-icon.spark {
+	animation: shake-once 0.18s cubic-bezier(0.36, 0.07, 0.19, 0.97)
+		forwards !important;
+}
+
+@keyframes shake-once {
+	0% {
+		transform: none;
+	}
+	20% {
+		transform: translateX(-4px) rotate(-8deg);
+	}
+	40% {
+		transform: translateX(4px) rotate(8deg);
+	}
+	60% {
+		transform: translateX(-2px) rotate(-4deg);
+	}
+	80% {
+		transform: translateX(2px) rotate(4deg);
+	}
+	100% {
+		transform: none;
+	}
+}
+
+.dazzle {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 1px;
+	height: 1px;
+	background: red;
+	border-radius: 50%;
+	opacity: 0;
+	pointer-events: none;
+	z-index: 9999;
+	transform: translate(-50%, -50%);
+}
+
+.spark .dazzle {
+	opacity: 1;
+	animation: dazzle-anim 0.6s forwards;
+}
+
+.spark .dazzle:nth-child(2) {
+	--angle: -40deg;
+	--random: 0.23;
+}
+
+.spark .dazzle:nth-child(3) {
+	--angle: -28.5714deg;
+	--random: 0.67;
+}
+
+.spark .dazzle:nth-child(4) {
+	--angle: -17.1429deg;
+	--random: 0.41;
+}
+
+.spark .dazzle:nth-child(5) {
+	--angle: -5.7143deg;
+	--random: 0.89;
+}
+
+.spark .dazzle:nth-child(6) {
+	--angle: 5.7143deg;
+	--random: 0.12;
+}
+
+.spark .dazzle:nth-child(7) {
+	--angle: 17.1429deg;
+	--random: 0.54;
+}
+
+.spark .dazzle:nth-child(8) {
+	--angle: 28.5714deg;
+	--random: 0.36;
+}
+
+.spark .dazzle:nth-child(9) {
+	--angle: 40deg;
+	--random: 0.78;
+}
+
+@keyframes dazzle-anim {
+	0% {
+		opacity: 1;
+		transform: translate(-50%, 100%);
+	}
+	60% {
+		opacity: 0.5;
+		transform: translate(-50%, 50%) rotate(var(--angle))
+			translateY(calc(-20px * var(--random)))
+			rotate(var(--angle)) translateY(-10px);
+	}
+	100% {
+		opacity: calc(0 - var(--random));
+		background-color: black;
+		transform: translate(-50%, -50%) rotate(var(--angle))
+			translateY(calc(-20px * var(--random)))
+			rotate(var(--angle)) translateY(-10px);
+	}
+}
+
+.navbar-logo:hover {
+	animation: navbar-bounce 0.6s cubic-bezier(0.33, 1.5, 0.68, 1) both;
+}
+
+@keyframes navbar-bounce {
+	0% {
+		transform: translateY(0) scaleX(1) scaleY(1);
+	}
+	15% {
+		transform: translateY(1px) scaleX(0.98) scaleY(0.99);
+	}
+	35% {
+		transform: translateY(-3px) scaleX(1.01) scaleY(1.02);
+	}
+	55% {
+		transform: translateY(0.5px) scaleX(0.99) scaleY(0.99);
+	}
+	70% {
+		transform: translateY(-1px) scaleX(1) scaleY(1.01);
+	}
+	85% {
+		transform: translateY(0.5px) scaleX(0.995) scaleY(0.995);
+	}
+	100% {
+		transform: translateY(0) scaleX(1) scaleY(1);
+	}
+}

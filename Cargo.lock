@@ -1851,6 +1851,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "gloo-timers"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bbb143cf96099802033e0d4f4963b19fd2e0b728bcf076cd9cf7f6634f092994"
+dependencies = [
+ "js-sys",
+ "wasm-bindgen",
+]
+
+[[package]]
 name = "gloo-utils"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2313,6 +2323,17 @@ dependencies = [
  "bitflags 2.9.0",
  "serde",
  "unicode-segmentation",
+]
+
+[[package]]
+name = "kiosk"
+version = "0.1.0"
+dependencies = [
+ "dioxus",
+ "gloo-timers",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
 ]
 
 [[package]]
@@ -3136,13 +3157,6 @@ name = "pkg-config"
 version = "0.3.32"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7edddbd0b52d732b21ad9a5fab5c704c14cd949e5e9a1ec5929a24fded1b904c"
-
-[[package]]
-name = "platform"
-version = "0.1.0"
-dependencies = [
- "dioxus",
-]
 
 [[package]]
 name = "png"
