@@ -4,7 +4,10 @@
 use dioxus::logger::tracing;
 use dioxus::prelude::*;
 
+mod api;
 pub mod components;
+// #[cfg(feature = "server")]
+pub mod hemkop;
 use crate::components::background_dots::BackgroundDots;
 use crate::components::category::{CategoryContainer, ItemCategory};
 use crate::components::kiosk_item::{KioskItem, PriceTrend};
@@ -24,6 +27,11 @@ fn main() {
 
 #[component]
 fn App() -> Element {
+	use dioxus::prelude::*;
+
+	let mut search_result =
+		use_resource(|| async { api::search("angry birds".to_string()).await });
+
 	rsx! {
 		document::Stylesheet { href: NORMALIZE }
 		document::Stylesheet { href: CSS }

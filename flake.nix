@@ -62,7 +62,7 @@
             wasm-bindgen-cli
           ];
           shellHook = ''
-            export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath (with pkgs; [ ])}
+            export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath (with pkgs; [ openssl ])}
           '';
         };
       }

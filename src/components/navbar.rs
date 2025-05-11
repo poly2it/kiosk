@@ -130,7 +130,8 @@ fn LogInButton() -> Element {
 					src: EMPTY_IMG,
 					width: "24px",
 					height: "24px",
-					style: "--lqip:-151216",
+					// style: "--lqip:-151216",
+					background: "black",
 					border_radius: "1000px",
 					box_shadow: "0 0 8px 0px #ffffffcc inset,",
 				}
