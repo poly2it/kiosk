@@ -21,6 +21,18 @@ static LQIP_CSS: Asset = asset!("resources/lqip.css");
 static NORMALIZE: Asset = asset!("resources/normalize.css");
 static GFONTS: &str = "https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Spline+Sans:wght@300..700&display=swap";
 
+#[derive(Routable, PartialEq, Clone)]
+pub enum Route {
+	#[route("/")]
+	HomePage {},
+	#[route("/buy")]
+	BuyPage {},
+	#[route("/sell")]
+	SellPage {},
+	#[route("/login")]
+	LoginPage {},
+}
+
 fn main() {
 	dioxus::launch(App);
 }
@@ -28,9 +40,6 @@ fn main() {
 #[component]
 fn App() -> Element {
 	use dioxus::prelude::*;
-
-	let mut search_result =
-		use_resource(|| async { api::search("angry birds".to_string()).await });
 
 	rsx! {
 		document::Stylesheet { href: NORMALIZE }
@@ -42,6 +51,29 @@ fn App() -> Element {
 			href: GFONTS,
 			rel: "stylesheet"
 		}
+		Router::<Route> {}
+	}
+}
+
+#[component]
+fn LoginPage() -> Element {
+	rsx! {
+		BackgroundDots {}
+		Navbar {}
+		div {
+			padding: "64px",
+			text_align: "center",
+			h1 { "Login Page" }
+		}
+	}
+}
+
+#[component]
+fn HomePage() -> Element {
+	let _search_result =
+		use_resource(|| async { api::search("angry birds".to_string()).await });
+
+	rsx! {
 		BackgroundDots {}
 		Navbar {}
 		CategoryContainer {
@@ -106,6 +138,34 @@ fn App() -> Element {
 				KioskItem { label: "Bird Seed".to_string(), price_trend: PriceTrend::Up, lowest_sell: 3.99, highest_buy: 4.49 }
 				KioskItem { label: "Fish Flakes".to_string(), price_trend: PriceTrend::Down, lowest_sell: 2.49, highest_buy: 2.99 }
 			}
+		}
+	}
+}
+
+#[component]
+fn SellPage() -> Element {
+	rsx! {
+		BackgroundDots {}
+		Navbar {}
+		div {
+			padding: "64px",
+			text_align: "center",
+			h1 { "Sell Page" }
+			p { "This is where you will be able to sell your items." }
+		}
+	}
+}
+
+#[component]
+fn BuyPage() -> Element {
+	rsx! {
+		BackgroundDots {}
+		Navbar {}
+		div {
+			padding: "64px",
+			text_align: "center",
+			h1 { "Buy Page" }
+			p { "This is where you will be able to buy items." }
 		}
 	}
 }

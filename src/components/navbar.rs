@@ -1,6 +1,5 @@
-use dioxus::prelude::*;
-
 use super::constants::*;
+use dioxus::prelude::*;
 
 #[component]
 pub fn Navbar() -> Element {
@@ -37,8 +36,8 @@ pub fn Navbar() -> Element {
 
 				NavbarLogo { }
 				NavbarDivider {}
-				NavbarButton { href: "#".to_string(), label: "Buy".to_string() }
-				NavbarButton { href: "#".to_string(), label: "Sell".to_string() }
+				NavbarButton { route: crate::Route::BuyPage {}, label: "Buy".to_string() }
+				NavbarButton { route: crate::Route::SellPage {}, label: "Sell".to_string() }
 				li {
 					margin_left: "auto"
 				}
@@ -51,9 +50,9 @@ pub fn Navbar() -> Element {
 #[component]
 fn NavbarLogo() -> Element {
 	rsx! {
-		a {
+		Link {
+			to: crate::Route::HomePage {},
 			class: "navbar-logo",
-			href: "#",
 			text_decoration: "none",
 			color: "#000000",
 			font_weight: "700",
@@ -82,10 +81,10 @@ fn NavbarDivider() -> Element {
 }
 
 #[component]
-fn NavbarButton(href: String, label: String) -> Element {
+fn NavbarButton(route: crate::Route, label: String) -> Element {
 	rsx! {
-		a {
-			href: "{href}",
+		Link {
+			to: route,
 			text_decoration: "none",
 			color: "#000000",
 			font_weight: "700",
@@ -110,10 +109,10 @@ fn LogInButton() -> Element {
 			margin_right: "6px",
 			border_radius: "1000px",
 			box_shadow: "",
-			a {
+			Link {
+				to: crate::Route::LoginPage {},
 				padding_left: "20px",
 				padding_right: "2px",
-				href: "#",
 				text_decoration: "none",
 				color: "#000",
 				font_weight: "700",
