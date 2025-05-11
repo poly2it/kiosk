@@ -1,5 +1,5 @@
-use dioxus::prelude::*;
 use super::constants::*;
+use dioxus::prelude::*;
 
 #[component]
 pub fn CategoryContainer(children: Element) -> Element {
@@ -7,9 +7,6 @@ pub fn CategoryContainer(children: Element) -> Element {
 		div {
 			columns: "420px",
 			column_gap: "32px",
-			width: "calc(100vw - 80px)",
-			max_width: "1400px",
-			margin: "40px auto",
 			{children}
 		}
 	}
