@@ -2,15 +2,25 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     inputs@{
       self,
       nixpkgs,
       treefmt-nix,
+      rust-overlay,
     }:
     let
-      pkgsFor = system: nixpkgs.legacyPackages.${system};
+      pkgsFor = system: import nixpkgs {
+        inherit system;
+        overlays = [
+          (import rust-overlay)
+        ];
+      };
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -38,9 +48,14 @@
         );
         devShells.${system}.default = pkgs.mkShell {
           buildInputs = with pkgs; [
+            (rust-bin.nightly.latest.default.override {
+              targets = [ "x86_64-unknown-linux-gnu" "wasm32-unknown-unknown" ];
+              extensions = [ "rustc-codegen-cranelift-preview" ];
+            })
             dioxus-cli
             cargo
             pkg-config
+            openssl
             mold
             clang
             llvmPackages.lld

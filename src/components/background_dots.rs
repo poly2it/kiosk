@@ -1,6 +1,7 @@
-use dioxus::prelude::*;
-use crate::window_events::use_on_window;
 use crate::components::constants::*;
+#[cfg(feature = "web")]
+use crate::window_events::use_on_window;
+use dioxus::prelude::*;
 
 #[component]
 pub fn BackgroundDots() -> Element {
@@ -9,6 +10,7 @@ pub fn BackgroundDots() -> Element {
 
 	to_owned![parallax_x, parallax_y];
 
+	#[cfg(feature = "web")]
 	use_on_window("mousemove", move |evt: web_sys::MouseEvent| {
 		let x = evt.x();
 		let y = evt.y();

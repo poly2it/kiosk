@@ -6,17 +6,20 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-dioxus = { version = "0.6.0", features = [] }
-gloo-timers = "0.3.0"
-wasm-bindgen = "0.2.100"
-wasm-bindgen-futures = "0.4.50"
+dioxus = { version = "^0.6.3", features = ["fullstack"] }
+gloo-timers = { version = "0.3.0", optional = true }
+wasm-bindgen = { version = "0.2.100", optional = true }
+wasm-bindgen-futures = { version = "0.4.50", optional = true }
 web-sys = { version = "0.3.77", features = ["Window", "Document", "MouseEvent"] }
+reqwest = { version = "0.12.15", optional = true }
+serde = { version = "1.0.219", optional = true }
 
 [features]
 default = ["web"]
-web = ["dioxus/web"]
+web = ["dioxus/web", "dep:gloo-timers", "dep:wasm-bindgen", "dep:wasm-bindgen-futures"]
 desktop = ["dioxus/desktop"]
 mobile = ["dioxus/mobile"]
+server = ["dioxus/server", "dep:reqwest", "dep:serde"]
 
 [profile]
 

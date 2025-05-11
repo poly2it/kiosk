@@ -10,6 +10,7 @@ use crate::components::category::{CategoryContainer, ItemCategory};
 use crate::components::kiosk_item::{KioskItem, PriceTrend};
 use crate::components::navbar::Navbar;
 
+#[cfg(feature = "web")]
 mod window_events;
 
 static CSS: Asset = asset!("resources/styles.css");
