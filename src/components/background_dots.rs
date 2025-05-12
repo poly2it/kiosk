@@ -1,4 +1,6 @@
 use crate::components::constants::*;
+#[cfg(feature = "web")]
+use crate::window_events::use_on_window;
 use dioxus::prelude::*;
 
 #[component]
@@ -6,32 +8,30 @@ pub fn BackgroundDots() -> Element {
 	let parallax_x = use_signal(|| 0.0);
 	let parallax_y = use_signal(|| 0.0);
 
-	/*
-	       client! {
-		       use crate::window_events::use_on_window;
-		       to_owned![parallax_x, parallax_y];
-		       use_on_window("mousemove", move |evt: web_sys::MouseEvent| {
-			       let x = evt.x();
-			       let y = evt.y();
-			       let w = web_sys::window()
-				       .unwrap()
-				       .inner_width()
-				       .unwrap()
-				       .as_f64()
-				       .unwrap_or(1.0);
-			       let h = web_sys::window()
-				       .unwrap()
-				       .inner_height()
-				       .unwrap()
-				       .as_f64()
-				       .unwrap_or(1.0);
-			       let px = (x as f64 / w) * 16.0;
-			       let py = (y as f64 / h) * 16.0;
-			       parallax_x.set(px);
-			       parallax_y.set(py);
-		       });
-	       }
-	*/
+	client! {
+		to_owned![parallax_x, parallax_y];
+		use_on_window("mousemove", move |evt: web_sys::MouseEvent| {
+			let x = evt.x();
+			let y = evt.y();
+			let w = web_sys::window()
+				.unwrap()
+				.inner_width()
+				.unwrap()
+				.as_f64()
+				.unwrap_or(1.0);
+			let h = web_sys::window()
+				.unwrap()
+				.inner_height()
+				.unwrap()
+				.as_f64()
+				.unwrap_or(1.0);
+			let px = (x as f64 / w) * 16.0;
+			let py = (y as f64 / h) * 16.0;
+			parallax_x.set(px);
+			parallax_y.set(py);
+		});
+	}
+
 	rsx! {
 		div {
 			position: "fixed",

@@ -15,7 +15,7 @@ use crate::components::kiosk_item::{KioskItem, PriceTrend};
 use crate::components::navbar::Navbar;
 
 #[cfg(feature = "web")]
-mod window_events;
+pub mod window_events;
 
 static CSS: Asset = asset!("resources/styles.css");
 static LQIP_CSS: Asset = asset!("resources/lqip.css");
@@ -52,6 +52,7 @@ fn App() -> Element {
 			href: GFONTS,
 			rel: "stylesheet"
 		}
+		BackgroundDots {}
 		Router::<Route> {}
 	}
 }
@@ -72,7 +73,6 @@ fn PageContainer(children: Element) -> Element {
 #[component]
 fn LoginPage() -> Element {
 	rsx! {
-		BackgroundDots {}
 		Navbar {}
 		div {
 			padding: "64px",
@@ -88,7 +88,6 @@ fn HomePage() -> Element {
 	// 	use_resource(|| async { api::search("angry birds".to_string()).await });
 
 	rsx! {
-		BackgroundDots {}
 		Navbar {}
 		PageContainer {
 			CategoryContainer {
@@ -172,7 +171,6 @@ fn SellPage() -> Element {
 	};
 
 	rsx! {
-		BackgroundDots {}
 		Navbar {}
 		PageContainer {
 			div {
@@ -195,7 +193,6 @@ fn SellPage() -> Element {
 #[component]
 fn BuyPage() -> Element {
 	rsx! {
-		BackgroundDots {}
 		Navbar {}
 		div {
 			padding: "64px",
