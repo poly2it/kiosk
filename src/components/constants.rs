@@ -22,14 +22,14 @@ pub const GREEN_LIGHT: &str = "#82EB4F";
 pub const GREEN_PALE: &str = "#BEF5A4";
 pub const GREEN_NEAR_WHITE: &str = "#FEFEFE";
 
-pub const BLACK_DEEP: &str = "#181818";
+pub const BLACK_DEEP: &str = "#000000";
 pub const BLACK_SOFT: &str = "#222222";
 pub const BLACK_LIGHT: &str = "#444444";
 pub const WHITE_PURE: &str = "#FFFFFF";
 pub const WHITE_WARM: &str = "#F9F6F2";
 pub const WHITE_COOL: &str = "#F5F8FA";
 
-pub const COLOR_TEXT_PRIMARY: &str = "#222";
+pub const COLOR_TEXT_PRIMARY: &str = BLACK_DEEP;
 pub const COLOR_TEXT_SECONDARY: &str = "#222";
 
 pub const COLOR_FG_PRIMARY: &str = BLUE_MEDIUM;

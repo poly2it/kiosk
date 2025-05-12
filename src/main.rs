@@ -1,5 +1,6 @@
 #![allow(non_camel_case_types)]
 
+use components::constants::*;
 #[allow(unused)]
 use dioxus::logger::tracing;
 use dioxus::prelude::*;
@@ -159,17 +160,34 @@ fn HomePage() -> Element {
 
 #[component]
 fn SellPage() -> Element {
+	use crate::components::pill_button::PillButton;
 	use crate::components::search_bar::SearchBar;
 
 	let onsearch = |query: String| {
 		tracing::info!("Search query: {}", query);
 	};
 
+	let on_pill_click = |_| {
+		tracing::info!("Pill button clicked!");
+	};
+
 	rsx! {
 		BackgroundDots {}
 		Navbar {}
 		PageContainer {
-			SearchBar { onsearch: onsearch }
+			div {
+				display: "flex",
+				gap: "16px",
+				flex_direction: "row",
+
+				SearchBar { onsearch: onsearch }
+				PillButton {
+					label: "New".to_string(),
+					color: BLUE_LIGHT,
+					border: BLUE_MEDIUM,
+					onclick: on_pill_click,
+				}
+			}
 		}
 	}
 }

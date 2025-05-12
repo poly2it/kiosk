@@ -14,16 +14,16 @@ pub fn SearchBar(onsearch: EventHandler<String>) -> Element {
 	rsx! {
 		div {
 			display: "flex",
+			flex: "1",
 			align_items: "center",
 			background: "{WHITE_PURE}",
 			border_radius: "1000px",
-			height: "34px",
+			height: "32px",
 			padding_left: "20px",
 			padding_right: "20px",
 			margin: "0 auto",
 			border: "1px solid {COLOR_FG_ACCENT}",
 			overflow: "hidden",
-
 			input {
 				flex: "2",
 				border: "none",
@@ -33,7 +33,7 @@ pub fn SearchBar(onsearch: EventHandler<String>) -> Element {
 				font_weight: "500",
 				color: COLOR_TEXT_PRIMARY,
 				width: "100%",
-				line_height: "34px",
+				line_height: "32px",
 				r#type: "text",
 				value: "{query}",
 				oninput: oninput,
