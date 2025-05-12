@@ -19,10 +19,13 @@ pub fn SearchBar(onsearch: EventHandler<String>) -> Element {
 			border_radius: "1000px",
 			height: "34px",
 			padding_left: "20px",
-			padding_right: "8px",
+			padding_right: "20px",
 			margin: "0 auto",
 			border: "1px solid {COLOR_FG_ACCENT}",
+			overflow: "hidden",
+
 			input {
+				flex: "2",
 				border: "none",
 				outline: "none",
 				background: "transparent",
